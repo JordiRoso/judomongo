@@ -1,7 +1,7 @@
 // const mongoose = require("mongoose");
 
 import mongoose from "mongoose";
-mongoose.set("strictQuery", true);
+// mongoose.set("strictQuery", true);
 
 // conexion
 
