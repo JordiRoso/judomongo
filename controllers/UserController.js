@@ -1,4 +1,3 @@
-import { rmSync } from "fs";
 import User from "../models/User.js";
 
 const UserController = {};
