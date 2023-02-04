@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import db from "./config/database.js";
-// import  router from "./router.js";
+import  router from "./router.js";
 
 const app = express();
 
@@ -26,7 +26,7 @@ app.use(json());
 app.use(cors(corsOptions));
 
 // routes
-// app.use(router);
+app.use(router);
 
 const port = process.env.PORT || 3000;
 
