@@ -46,6 +46,11 @@ results:
         {
           type: String,
           required: true
+        },
+        club: 
+        {
+          type: String,
+          required: false
         }
     }
 ]
