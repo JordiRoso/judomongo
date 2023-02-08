@@ -39,6 +39,18 @@ UserController.getByName = async (req, res) => {
     }
 };
 
+UserController.deleteById = async (req,res) => {
+    try {
+        const deletedOne = await User.deleteOne({_id: req.params.id});
+        res.json({
+            message: `${req.params.id} Deleted`,
+            data: deletedOne,
+        });
+    } catch (error){
+        res.status(500).send("internal error");
+    };
+}
+
 
 
 export default UserController;
