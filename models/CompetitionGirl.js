@@ -1,6 +1,6 @@
 import  {Schema, model} from "mongoose";
 
-const CompetitionMenSchema = new Schema({
+const CompetitionGirlSchema = new Schema({
   name: 
   { 
     type: String, 
@@ -21,7 +21,7 @@ year:
   { 
     type: String, 
     required: true, 
-    default: "male" 
+    default: "female" 
 },
   category: 
   { 
@@ -35,7 +35,7 @@ results:
       weight: {
         type: String,
         required: true,
-        enum: [-60,-66,-73,-81,-90,-100,100],
+        enum: [-48,-52,-57,-63,-70,-78,78],
       },
       position: 
         {
@@ -58,6 +58,6 @@ results:
     
 });
 
-const CompetitionMen = model("competitionmens", CompetitionMenSchema);
+const CompetitionGirl = model("competitiongirls", CompetitionGirlSchema);
 
-export default CompetitionMen;
+export default CompetitionGirl;
