@@ -8,6 +8,8 @@ import verifyToken from "../middelwares/verifyToken.js";
 
 router.get("/users", verifyToken, isSuperAdmin, UserController.getAll);
 router.get("/",UserController.getAll);
+router.get("/:name",UserController.getByName);
+router.delete("/delete/:id",UserController.deleteById);
 
 
 

@@ -27,7 +27,7 @@ UserController.getByName = async (req, res) => {
         return res.status(200).json({
             succes: true,
             message: "Get user retrieved succsessfully",
-            data: "user",
+            data: user,
         });
     } catch (error){
         return rmSync.status(500).json({
