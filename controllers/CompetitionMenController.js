@@ -347,33 +347,33 @@ CompetitionMenController.deleteResult = async (req, res) => {
 
 
 
-CompetitionMenController.update = async (req, res) => {
-  const competitionId = req.params.id;
-  try {
-    const competition = await CompetitionMen.findOneAndUpdate(
-      { _id: competitionId },
-      req.body,
-      { new: true }
-    );
-    if (!competition) {
-      return res.status(404).json({
-        success: false,
-        message: "Competition not found",
-      });
-    }
-    return res.status(200).json({
-      success: true,
-      message: "Competition updated successfully",
-      data: competition,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      success: false,
-      message: "Error updating competition",
-      error: error.message,
-    });
-  }
-};
+// CompetitionMenController.update = async (req, res) => {
+//   const competitionId = req.params.id;
+//   try {
+//     const competition = await CompetitionMen.findOneAndUpdate(
+//       { _id: competitionId },
+//       req.body,
+//       { new: true }
+//     );
+//     if (!competition) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "Competition not found",
+//       });
+//     }
+//     return res.status(200).json({
+//       success: true,
+//       message: "Competition updated successfully",
+//       data: competition,
+//     });
+//   } catch (error) {
+//     return res.status(500).json({
+//       success: false,
+//       message: "Error updating competition",
+//       error: error.message,
+//     });
+//   }
+// };
 
 CompetitionMenController.getAll = async (req, res) => {
   try {
@@ -421,5 +421,98 @@ CompetitionMenController.getByMyId = async (req, res) => {
     });
   }
 };
+
+
+
+function isIdentical(existingResult, newResult) {
+  return existingResult.weight === newResult.weight &&
+         existingResult.position === newResult.position &&
+         existingResult.name === newResult.name &&
+         existingResult.club === newResult.club;
+}
+
+
+
+CompetitionMenController.update = async function updateCompetition(req, res) {
+  const competitionId = req.params.id;
+  const newResults = req.body.results;
+
+  try {
+    // Obtener la competición existente
+    const competition = await CompetitionMen.findById(competitionId);
+    if (!competition) {
+      return res.status(404).json({
+        success: false,
+        message: "Competition not found",
+      });
+    }
+
+    // Actualizar los resultados existentes con los nuevos resultados
+    let updated = false;
+    for (let i = 0; i < newResults.length; i++) {
+      const newResult = newResults[i];
+      let identicalResult = null;
+
+      for (let j = 0; j < competition.results.length; j++) {
+        const existingResult = competition.results[j];
+        if (isIdentical(existingResult, newResult)) {
+          identicalResult = existingResult;
+          break;
+        }
+      }
+
+      if (!identicalResult) {
+        competition.results.push(newResult);
+        updated = true;
+      } else {
+        let hasChanged = false;
+        if (identicalResult.name !== newResult.name) {
+          identicalResult.name = newResult.name;
+          hasChanged = true;
+        }
+        if (identicalResult.weight !== newResult.weight) {
+          identicalResult.weight = newResult.weight;
+          hasChanged = true;
+        }
+        if (identicalResult.position !== newResult.position) {
+          identicalResult.position = newResult.position;
+          hasChanged = true;
+        }
+        if (identicalResult.club !== newResult.club) {
+          identicalResult.club = newResult.club;
+          hasChanged = true;
+        }
+        if (hasChanged) {
+          updated = true;
+        }
+      }
+    }
+
+    if (updated) {
+      // Actualizar la competición con los resultados combinados
+      const updatedCompetition = await competition.save();
+      return res.status(200).json({
+        success: true,
+        message: "Competition results updated successfully",
+        data: updatedCompetition,
+      });
+    } else {
+      return res.status(200).json({
+        success: true,
+        message: "Competition results are already up to date",
+        data: competition,
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error updating competition results",
+      error: error.message,
+    });
+  }
+};
+
+
+
 
 export default CompetitionMenController;

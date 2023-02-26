@@ -6,7 +6,7 @@ import isSuperAdmin from "../middelwares/isSuperAdmin.js";
 import verifyToken from "../middelwares/verifyToken.js";
 
 
-router.get("/users", verifyToken, isSuperAdmin, UserController.getAll);
+router.get("/users",verifyToken,isSuperAdmin, UserController.getAll);
 router.get("/",UserController.getAll);
 router.get("/:name",UserController.getByName);
 router.get("/id/:id",UserController.getById);

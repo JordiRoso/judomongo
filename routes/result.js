@@ -16,6 +16,7 @@ router.get("/buscar/search", CompetitionMenController.search);
 router.delete("/:id", CompetitionMenController.deleteResult);
 router.patch("/:id", CompetitionMenController.update);
 router.get("/",verifyToken, CompetitionMenController.getAll);
+// router.get("/", CompetitionMenController.getAll);
 router.get("/:_id",CompetitionMenController.getByMyId);
 router.post("/competitor/:_id",CompetitionMenController.CreateCompetitors);
 export default router;
