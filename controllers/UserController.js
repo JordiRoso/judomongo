@@ -68,54 +68,6 @@ UserController.deleteById = async (req, res) => {
   }
 };
 
-//  UserController.update = async (req, res) => {
-//     try {
-//         const updatedUser = await User.findOne(
-//             req.params.userId,
-//             req.body
-//           );
-//       console.log("updatedUser:",updatedUser)
-//       return res.status(200).json({
-//         success: true,
-//         message: 'User updated successfully',
-//         data: updatedUser,
-//       });
-//     } catch (error) {
-//       return res.status(500).json({
-//         success: false,
-//         message: 'Error updating user',
-//         error: error.message,
-//       });
-//     }
-//   };
-// UserController.update = async (req, res) => {
-//     try {
-//       const updatedUser = await User.findOne(req.params.userId, req.body);
-//       if (!updatedUser) {
-//         return res.status(404).json({
-//           success: false,
-//           message: "User not found",
-//         });
-//       }
-//       return res.status(200).json({
-//         success: true,
-//         message: "User updated successfully",
-//         data: updatedUser,
-//       });
-//     } catch (error) {
-//       return res.status(500).json({
-//         success: false,
-//         message: "Error updating user",
-//         error: error.message,
-//       });
-//     }
-//   };
-
-// Actualización del controlador UserController.update
-
-
-
-
 UserController.update = async function updateUser(req, res) {
   const UserId = req.params.id;
   const updatedUser = req.body;

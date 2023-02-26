@@ -36,55 +36,7 @@ CompetitionMenController.create = async (req, res) => {
   }
 };
 
-// CompetitionMenController.CreateCompetitors = async (req, res) => {
-//   try {
-//     const newCompetitor = req.body;
-//     const savedCompetitor = await CompetitionMen.create(newCompetitor);
-//     return res.status(200).json({
-//       success: true,
-//       message: 'Competitor created successfully',
-//       data: savedCompetitor,
-//     });
-//   } catch (error) {
-//     return res.status(500).json({
-//       success: false,
-//       message: 'Error creating competitor',
-//       error: error.message,
-//     });
-//   }
-// }
-
-// CompetitionMenController.CreateCompetitors = async (req, res) => {
-//   const competitionId = req.params.competitionId;
-//   const data = req.body;
-
-//   try {
-//     const competition = await CompetitionMen.findById(competitionId);
-
-//     if (!competition) {
-//       throw new Error('Competition not found');
-//     }
-
-//     const newResult = {
-//       weight: data.weight,
-//       position: data.position,
-//       name: data.name,
-//       club: data.club,
-//     };
-
-//     competition.results.push(newResult);
-//     await competition.save();
-
-//     res.status(201).json(newResult);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: 'Error creating result' });
-//   }
-// };
-
-
-
- CompetitionMenController.CreateCompetitors = async (req, res) => {
+CompetitionMenController.CreateCompetitors = async (req, res) => {
   const competitionId = req.params.competitionId;
   const newResultData = req.body;
 
@@ -92,7 +44,7 @@ CompetitionMenController.create = async (req, res) => {
     const competition = await CompetitionMen.findById(competitionId);
 
     if (!competition) {
-      throw new Error('Competition not found');
+      throw new Error("Competition not found");
     }
 
     const newResult = {
@@ -108,11 +60,9 @@ CompetitionMenController.create = async (req, res) => {
     res.status(201).json(newResult);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error creating result' });
+    res.status(500).json({ message: "Error creating result" });
   }
 };
-
-
 
 CompetitionMenController.getByNameAndYear = async (req, res) => {
   const name = req.params.name;
@@ -168,36 +118,6 @@ CompetitionMenController.getById = async (req, res) => {
     });
   }
 };
-// CompetitionController.getById = async (req, res) => {
-//   const id = req.params._id;
-//   try {
-//   const competitionMen = await CompetitionMen.findById(id);
-//   const competitionGirls = await CompetitionGirls.findById(id);
-//   let competition;
-//   if (competitionMen) {
-//   competition = competitionMen;
-//   } else if (competitionGirls) {
-//   competition = competitionGirls;
-//   }
-//   if (!competition) {
-//   return res.status(404).json({
-//   success: false,
-//   message: "Competition not found"
-//   });
-//   }
-//   return res.status(200).json({
-//   success: true,
-//   message: "Competition retrieved successfully",
-//   data: competition
-//   });
-//   } catch (error) {
-//   return res.status(500).json({
-//   success: false,
-//   message: "Error retrieving competition",
-//   error: error.message
-//   });
-//   }
-//   };
 
 CompetitionMenController.getByName = async (req, res) => {
   const name = req.params.name;
@@ -280,36 +200,6 @@ CompetitionMenController.search = async (req, res) => {
   }
 };
 
-// CompetitionMenController.deleteResult = async (req, res) => {
-//   const resultId = req.params.id;
-//   try {
-//     const competition = await CompetitionMen.findOne({
-//       "results._id": resultId,
-//     });
-//     if (!competition) {
-//       return res.status(404).json({
-//         success: false,
-//         message: "Result not found",
-//       });
-//     }
-//     competition.results.id(resultId).remove();
-//     await competition.save();
-//     return res.status(200).json({
-//       success: true,
-//       message: "Result deleted successfully",
-//     });
-//   } catch (error) {
-//     return res.status(500).json({
-//       success: false,
-//       message: "Error deleting result",
-//       error: error.message,
-//     });
-//   }
-// };
-
-
-
-
 CompetitionMenController.deleteResult = async (req, res) => {
   const resultId = req.params.id;
   try {
@@ -341,39 +231,6 @@ CompetitionMenController.deleteResult = async (req, res) => {
     });
   }
 };
-
-
-
-
-
-
-// CompetitionMenController.update = async (req, res) => {
-//   const competitionId = req.params.id;
-//   try {
-//     const competition = await CompetitionMen.findOneAndUpdate(
-//       { _id: competitionId },
-//       req.body,
-//       { new: true }
-//     );
-//     if (!competition) {
-//       return res.status(404).json({
-//         success: false,
-//         message: "Competition not found",
-//       });
-//     }
-//     return res.status(200).json({
-//       success: true,
-//       message: "Competition updated successfully",
-//       data: competition,
-//     });
-//   } catch (error) {
-//     return res.status(500).json({
-//       success: false,
-//       message: "Error updating competition",
-//       error: error.message,
-//     });
-//   }
-// };
 
 CompetitionMenController.getAll = async (req, res) => {
   try {
@@ -422,16 +279,14 @@ CompetitionMenController.getByMyId = async (req, res) => {
   }
 };
 
-
-
 function isIdentical(existingResult, newResult) {
-  return existingResult.weight === newResult.weight &&
-         existingResult.position === newResult.position &&
-         existingResult.name === newResult.name &&
-         existingResult.club === newResult.club;
+  return (
+    existingResult.weight === newResult.weight &&
+    existingResult.position === newResult.position &&
+    existingResult.name === newResult.name &&
+    existingResult.club === newResult.club
+  );
 }
-
-
 
 CompetitionMenController.update = async function updateCompetition(req, res) {
   const competitionId = req.params.id;
@@ -511,8 +366,5 @@ CompetitionMenController.update = async function updateCompetition(req, res) {
     });
   }
 };
-
-
-
 
 export default CompetitionMenController;
