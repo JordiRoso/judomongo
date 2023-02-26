@@ -4,23 +4,23 @@ const CompetitionMenSchema = new Schema({
   name: 
   { 
     type: String, 
-    required: true 
+    required: false
 },
 year: 
   { 
     type: String, 
-    required: true 
+    required: false
 },
   location: 
   { 
     type: String, 
-    required: true 
+    required: false
 },
   
   gender: 
   { 
     type: String, 
-    required: true, 
+    required: false, 
     default: "male" 
 },
   category: 

@@ -12,7 +12,7 @@ router.post("/girl",CompetitionGirlController.create);
 router.get("/:_id",CompetitionGirlController.getById);
 // router.get("/nombre/:name",CompetitionGirlController.getByName);
 router.get("/buscar/search", CompetitionGirlController.search);
-router.delete("/:id", CompetitionGirlController.deleteResult);
+// router.delete("/:id", CompetitionGirlController.deleteResult);
 router.patch("/:id", CompetitionGirlController.update);
 
 export default router;

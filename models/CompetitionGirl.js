@@ -14,7 +14,7 @@ year:
   location: 
   { 
     type: String, 
-    required: true 
+    required: false 
 },
   
   gender: 
@@ -33,9 +33,9 @@ results:
 [
     {
       weight: {
-        type: String,
+        type: Number,
         required: true,
-        enum: [-48,-52,-57,-63,-70,-78,78],
+        // enum: [-48,-52,-57,-63,-70,-78,78],
       },
       position: 
         {
