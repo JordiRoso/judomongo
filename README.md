@@ -42,7 +42,9 @@ En producción:
 
 ````
 npm start
-```
+`````
+
+
 
 
 ## API <a name = "api"></a>
@@ -51,12 +53,18 @@ npm start
 
 HTTP Verbs | Endpoints | Acción |
 | --- | --- | --- |
-| GET | /competitionMen/ | Lista de todas las competiciones de hombres |
-| GET | /competitionMen/:id | Busqueda de una competición por su id |
-| GET | /competitionMen/:nameCompetition | Busqueda de una competición por su nombre |
-| GET | /competitionWomen/ | Lista de todas las competiciones de mujeres |
-| GET | /competitionWomen/:id | Busqueda de una competición por su id |
-| GET | /competitionWomen/:nameCompetition | Busqueda de una competición por su nombre |
-| GET | /users/ | Lista de todos los usuarios |
-| GET | /users/:id | Busqueda de un usuario por su id |
-| GET | /users/:name | Busqueda de un usuario por su nombre |
+| GET | /users| Lista de todos los users |
+| GET | /users/id/:id | Lista de los users por su id |
+| DELETE | /users/delete/:id| Borrar users por su id|
+| POST | /auth/register | Registrar usuarios |
+| POST | /auth/login| Hacer Login usuario|
+| PATCH| /users/:id | Actualizar usuario |
+| GET | /girls/ girl/:id| Busqueda de competiciones de chicos por su id |
+| GET | /results/ competitor/:id| Busqueda de competiciones de chica por su id |
+| GET | results/buscar/search?category=senior&gender=female&name=japon&year=2025| Buscar: por Query Params: senior o junior, male o female, name, year|
+| PATCH | /girls/:id | Actualizar competiciones  de chicas por su id |
+| PATCH | /results/:id | Actualizar competiciones  de chicos por su id |
+| POST | /girls/girl| Creacion de competiciones y resultados de competiciones de chicas|
+| POST | /results/men| Creacion de competiciones y resultados de competiciones de chicos|
+| GET | /results | Buscar y muestra  todas competiciones. Tanto competiciones de chicos como de chicas |
+| DELETE | /results /:id| Borrar Competiciones tanto de chicos como de chicas |
