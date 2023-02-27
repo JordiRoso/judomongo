@@ -232,6 +232,34 @@ CompetitionMenController.deleteResult = async (req, res) => {
   }
 };
 
+CompetitionMenController.deleteCompetition = async (req, res) => {
+  const resultId = req.params.id;
+  try {
+    let competition = await CompetitionMen.findById(resultId);
+    if (!competition) {
+      competition = await CompetitionGirl.findById(resultId);
+      if (!competition) {
+        return res.status(404).json({
+          success: false,
+          message: "Competition not found",
+        });
+      }
+    }
+    await competition.remove();
+    return res.status(200).json({
+      success: true,
+      message: "Competition deleted successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error deleting competition",
+      error: error.message,
+    });
+  }
+};
+
+
 CompetitionMenController.getAll = async (req, res) => {
   try {
     const competitionMen = await CompetitionMen.find({});

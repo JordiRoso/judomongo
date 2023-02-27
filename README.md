@@ -67,4 +67,5 @@ HTTP Verbs | Endpoints | Acción |
 | POST | /girls/girl| Creacion de competiciones y resultados de competiciones de chicas|
 | POST | /results/men| Creacion de competiciones y resultados de competiciones de chicos|
 | GET | /results | Buscar y muestra  todas competiciones. Tanto competiciones de chicos como de chicas |
-| DELETE | /results /:id| Borrar Competiciones tanto de chicos como de chicas |
+| DELETE | /results /:id| Borrar  Resultados Competiciones tanto de chicos como de chicas |
+| DELETE | /results /competitions/:id| Borrar   Competiciones tanto de chicos como de chicas |

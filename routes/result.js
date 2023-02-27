@@ -9,6 +9,7 @@ router.post("/men", CompetitionMenController.create);
 router.get("/nombre/:name", CompetitionMenController.getByName);
 router.get("/buscar/search", CompetitionMenController.search);
 router.delete("/:id", CompetitionMenController.deleteResult);
+router.delete("/competition/:id", CompetitionMenController.deleteCompetition);
 router.patch("/:id", CompetitionMenController.update);
 router.get("/", verifyToken, CompetitionMenController.getAll);
 // router.get("/", CompetitionMenController.getAll);
