@@ -1,7 +1,8 @@
 import express, {json} from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import db from './config/database.js';
+import db from "./config/database.js";
+import  router from "./router.js";
 import routerUser from './routes/user.js';
 import routerAuth from './routes/auth.js';
 import routerResult from './routes/result.js';
@@ -9,8 +10,7 @@ import routerResultGirl from './routes/resultGirl.js';
 
 dotenv.config();
 
-import db from "./config/database.js";
-import  router from "./router.js";
+
 
 const app = express();
 
