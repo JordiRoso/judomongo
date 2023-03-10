@@ -13,6 +13,7 @@ router.delete("/competition/:id", CompetitionMenController.deleteCompetition);
 router.patch("/:id", CompetitionMenController.update);
 router.get("/", verifyToken, CompetitionMenController.getAll);
 // router.get("/", CompetitionMenController.getAll);
+router.get("/judo", CompetitionMenController.ByGetAll);
 router.get("/:_id", CompetitionMenController.getByMyId);
 router.post("/competitor/:_id", CompetitionMenController.CreateCompetitors);
 export default router;

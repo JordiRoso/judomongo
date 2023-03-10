@@ -279,6 +279,25 @@ CompetitionMenController.getAll = async (req, res) => {
   }
 };
 
+CompetitionMenController.ByGetAll = async (req, res) => {
+  try {
+    const competitionMen = await CompetitionMen.find({});
+    const competitionGirl = await CompetitionGirl.find({});
+    const competition = [...competitionMen, ...competitionGirl];
+    return res.status(200).json({
+      success: true,
+      message: "Competitions retrieved successfully",
+      data: competition,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error retrieving competitions",
+      error: error.message,
+    });
+  }
+};
+
 CompetitionMenController.getByMyId = async (req, res) => {
   const id = req.params._id;
   try {
